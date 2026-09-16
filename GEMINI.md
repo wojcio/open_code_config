@@ -18,11 +18,14 @@ Zarządza definicjami providerów modeli AI, w szczególności lokalnego serwera
 ## 📁 Struktura Plików
 | Ścieżka | Rola / Przeznaczenie |
 |---|---|
-| `opencode.json` | Główna konfiguracja providera, modeli, limitów tokenów i modalności |
+| `opencode.json` | Główna konfiguracja lokalna (baseURL: http://127.0.0.1:8000/v1) |
+| `opencode.json.remote` | Konfiguracja dla maszyn zdalnych/laptopa (baseURL: http://100.123.37.101:8000/v1) |
 | `.gitignore` | Ignorowanie lokalnych zależności (node_modules, pliki lock) oraz kopii zapasowych (*.bak) |
+| `README.md` | Dokumentacja użycia i spis modeli |
 | `GEMINI.md` | Kontekst projektu, architektura i stan dla Antigravity |
 
 ## 🔄 Ostatnie Zmiany i Stan Projektu
 - Zainicjalizowano repozytorium Git i podłączono remote `git@github.com:wojcio/open_code_config.git`.
 - Skonfigurowano i przetestowano 13 modeli na serwerze oMLX.
-- Przygotowano `.gitignore` wykluczający pliki tymczasowe i kopie zapasowe.
+- Dodano `opencode.json.remote` z adresem `http://100.123.37.101:8000/v1` (Tailscale/VPN) umożliwiający uruchamianie OpenCode na laptopie ze zdalnym serwerem oMLX na Mac Studio.
+

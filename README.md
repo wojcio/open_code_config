@@ -7,6 +7,13 @@ Global configuration repository for [OpenCode](https://opencode.ai) with local [
 Place `opencode.json` in your OpenCode configuration directory:
 - **macOS/Linux**: `~/.config/opencode/opencode.json`
 
+### Remote Client (e.g. Laptop over Tailscale / VPN)
+To run OpenCode on a laptop connecting to the Mac Studio oMLX server (`100.123.37.101`):
+```bash
+cp opencode.json.remote ~/.config/opencode/opencode.json
+```
+
+
 ## Configured Models
 
 All models connect to the local OpenAI-compatible endpoint at `http://127.0.0.1:8000/v1`:
