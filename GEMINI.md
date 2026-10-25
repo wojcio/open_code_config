@@ -28,4 +28,15 @@ Zarządza definicjami providerów modeli AI, w szczególności lokalnego serwera
 - Zainicjalizowano repozytorium Git i podłączono remote `git@github.com:wojcio/open_code_config.git`.
 - Skonfigurowano i przetestowano 13 modeli na serwerze oMLX.
 - Dodano `opencode.json.remote` z adresem `http://100.123.37.101:8000/v1` (Tailscale/VPN) umożliwiający uruchamianie OpenCode na laptopie ze zdalnym serwerem oMLX na Mac Studio.
+- Przeprowadzono chrzest bojowy i test obciążeniowy modelu `omlx/DeepSeek-V4-Flash-0731-MXFP4-MLX` na kontekście 171k tokenów (udokumentowano w sekcji poniżej oraz w README.md).
+
+## 🧪 Chrzest Bojowy i Use Case: DeepSeek-V4-Flash-0731-MXFP4-MLX (171k tokenów)
+- **Kontekst testu:** Rzeczywiste zapytanie agenta OpenCode w rozbudowanej sesji roboczej (prompt wejściowy: **171 334 tokeny**).
+- **Sprzęt:** Mac Studio M2 Ultra 192GB Unified Memory.
+- **Wyniki testu:**
+  - **VRAM / Unified Memory:** Szczytowe zużycie **~175.2 GB** bez ryzyka OOM.
+  - **Prefill (Prompt Processing):** GPU Metal 95–100% obciążenia przez **691.53 s** (~11.5 min) z przepustowością ~248 tok/s.
+  - **Generacja (Decoding):** Wywołanie narzędzia (`tool_calls`) przy 476 tokenach (22.5 tok/s) z aktywacją wieloetapowego MTP (accept rate 86.7%, 3.11 tok/cykl).
+  - **Wydajność Paged Prefix Cache:** Druga tura odzyskała **171 332 tokeny** z cache w **868 ms**, skracając czas oczekiwania na pierwszy token z 691 s do zaledwie 18 s. Generacja 1 432 tokenów zajęła 86.9 s (21.1 tok/s, `stop`).
+- **Wnioski:** Konfiguracja jest w 100% stabilna przy pracy z gigantycznym oknem kontekstowym. Przy nowych tematach zaleca się reset sesji OpenCode, aby uniknąć 11-minutowego prefillu początkowego.
 
