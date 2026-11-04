@@ -34,38 +34,31 @@ Provider conventions:
 The local variant (`opencode.json`) connects to the local OpenAI-compatible
 endpoint at `http://127.0.0.1:8000/v1`; the remote variant (`opencode.json.remote`)
 uses the same port over the VPN address `http://100.123.37.101:8000/v1`.
-The `models` list mirrors the models currently loaded on the oMLX server (20 entries).
+The `models` list mirrors the 20 chat/vision models configured on the oMLX server (`oMLX 0.7.4.dev1` + `Splash 1.5.0-m1`).
 
 ### Coding & Reasoning
 - `omlx/Qwen3-Coder-Next-MLX-9bit`
 - `omlx/DeepSeek-V4-Flash-0731-AWQ`
 - `omlx/DeepSeek-V4-Flash-0731-MXFP4-MLX`
-- `omlx/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2` (displayed as "Qwen3.8-27B-Coder390 (DFlash2)")
+- `omlx/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2` (displayed as `"Qwen3.8-27B-Coder390 (VLM · MTP)"`, vision enabled)
+- `omlx/flint-oQ8e`
 
 ### Mixture of Experts (MoE)
 - `omlx/Qwen3-235B-A22B-MLX-4bit`
 - `omlx/Qwen3.5-122B-A10B-MLX-9bit`
-- `omlx/MiniMax-M3-ConfigI-MLX`
+- `omlx/MiniMax-M3-ConfigI-MLX` (vision enabled)
 
-### General & FP16
-- `omlx/Qwen3.8-27B-Uncensored-MLX-SPLASH` (**default**)
-- `omlx/Qwen3.8-27B-Uncensored-MLX`
-- `omlx/Qwen3.8-27B-FP16_huzar_v1`
-- `omlx/Qwen3.8-27B-FP16_huzar_v1-SPLASH`
+### General & 27B (Splash 1.5.0-m1 vs Native MLX DFlash2)
+- `omlx/Qwen3.8-27B-Uncensored-MLX-SPLASH` (displayed as `"Qwen3.8-27B-Uncensored (SPLASH)"`, **default**, vision enabled)
+- `omlx/Qwen3.8-27B-Uncensored-MLX` (displayed as `"Qwen3.8-27B-Uncensored (MLX DFlash2)"`)
+- `omlx/Qwen3.8-27B-FP16_huzar_v1-SPLASH` (displayed as `"Qwen3.8-27B-FP16_huzar_v1 (SPLASH)"`)
+- `omlx/Qwen3.8-27B-FP16_huzar_v1` (displayed as `"Qwen3.8-27B-FP16_huzar_v1 (MLX DFlash2)"`)
 
-### SPLASH / DFlash2 variants
-- `omlx/Qwen3.8-27B-Uncensored-MLX-SPLASH` — SPLASH variant of `Qwen3.8-27B-Uncensored-MLX`
-- `omlx/Qwen3.8-27B-FP16_huzar_v1-SPLASH` — SPLASH variant of `Qwen3.8-27B-FP16_huzar_v1`
-- `omlx/Qwen3.8-27B-DFlash2` — DFlash2 variant
-- `omlx/Qwen3.8-27B-Coder390-…-MTP-DFlash2` — DFlash2 variant (Coder390)
+SPLASH variants are separate model IDs exposed by the oMLX server (`external_engine: "splash"` running `Splash 1.5.0-m1` with DFlash2 speculative decoding), so they are configured as their own entries rather than OpenCode `variants` (which cannot change the `modelID` sent to the server). The helper drafter checkpoint `Qwen3.8-27B-DFlash2` (`DFlash2DraftModel`) is excluded from the chat picker.
 
-SPLASH and DFlash2 are separate model IDs exposed by the oMLX server (speculative-decoding
-variants), so they are configured as their own entries rather than OpenCode `variants`
-(which cannot change the `modelID` sent to the server).
-
-### Flash & Speed
-- `omlx/Qwen3.8-Flash-Next-MTPLX-Optimized-Speed`
-- `omlx/Qwen3.8-Flash-Next-oQ5e-mtp`
+### Flash & Speed (VLM + FP16 Activation Recast)
+- `omlx/Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` (vision enabled)
+- `omlx/Qwen3.8-Flash-Next-oQ5e-mtp` (vision enabled)
 - `omlx/Step-3.5-Flash-4bit`
 
 ### Vision / OCR
@@ -93,6 +86,18 @@ Weryfikacja zachowania lokalnego serwera oMLX oraz klienta OpenCode pod ekstrema
   - Przy rozpoczynaniu nowego, niepowiązanego zadania warto utworzyć nową sesję w OpenCode, by uniknąć długiego prefillu cold-start. W sesjach wieloturowych Paged Prefix Cache redukuje kolejne odpowiedzi do kilkunastu sekund.
 
 ## Changelog
+
+### 2026-11-04 — oMLX 0.7.4.dev1 & Splash 1.5.0-m1, VLM unlock, drafter cleanup
+- Usunięto z listy wyboru OpenCode techniczny model pomocniczy `Qwen3.8-27B-DFlash2` (`DFlash2DraftModel`), pozostawiając dokładnie **20 modeli użytkowych**.
+- Uporządkowano etykiety modeli 27B w obu wariantach (`opencode.json` i `opencode.json.remote`):
+  - `Qwen3.8-27B-Uncensored (SPLASH)` vs `Qwen3.8-27B-Uncensored (MLX DFlash2)`
+  - `Qwen3.8-27B-FP16_huzar_v1 (SPLASH)` vs `Qwen3.8-27B-FP16_huzar_v1 (MLX DFlash2)`
+  - `Qwen3.8-27B-Coder390 (VLM · MTP)` (zamiast mylącego `(DFlash2)`)
+- Odblokowano obsługę obrazów (`"input": ["text", "image"]`, `"attachment": true`) dla wszystkich modeli VLM (`Qwen3.8-27B-Coder390`, `Qwen3.8-Flash-Next-oQ5e-mtp`, `Qwen3.8-Flash-Next-MTPLX-Optimized-Speed`, `MiniMax-M3-ConfigI-MLX`, `Qwen3.8-27B-Uncensored-MLX-SPLASH`, obok `UI-Venus-1.5-30B`, `Unlimited-OCR-8bit` i `olmOCR-2-7B-1025-8bit`).
+
+### 2026-10-28 — dodano model `flint-oQ8e`
+- Dodano nowy model `flint-oQ8e` (kontekst 262 144 tokenów) do konfiguracji lokalnej (`opencode.json`) oraz zdalnej (`opencode.json.remote`).
+- Lista skonfigurowanych modeli obejmuje obecnie 21 pozycji dostępnych na serwerze oMLX.
 
 ### 2026-10-25 — stress test i chrzest bojowy DeepSeek-V4-Flash (171k tokenów)
 - Udokumentowano use case i test obciążeniowy modelu `DeepSeek-V4-Flash-0731-MXFP4-MLX` na 171 334 tokenach kontekstu w sesji OpenCode.

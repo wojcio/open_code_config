@@ -1,30 +1,23 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "omlx": {
+    "omlxremote": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "oMLX",
+      "name": "oMLX Remote (VPN 100.123.37.101)",
       "options": {
         "baseURL": "http://100.123.37.101:8000/v1",
         "apiKey": "sk-omlx-0Thr9X0jHr1U2T2ReS17j6Vi"
       },
       "models": {
-        "Qwen3-Coder-Next-MLX-8bit": {
-          "name": "Qwen3-Coder-Next-MLX-8bit",
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "limit": {
-            "context": 262144,
-            "output": 32768
-          }
-        },
         "Qwen3-Coder-Next-MLX-9bit": {
-          "name": "Qwen3-Coder-Next-MLX-9bit",
+          "name": "[omlxremote] Qwen3-Coder-Next-MLX-9bit",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -32,21 +25,14 @@
           }
         },
         "DeepSeek-V4-Flash-0731-AWQ": {
-          "name": "DeepSeek-V4-Flash-0731-AWQ",
+          "name": "[omlxremote] DeepSeek-V4-Flash-0731-AWQ",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
-          },
-          "limit": {
-            "context": 262144,
-            "output": 32768
-          }
-        },
-        "DeepSeek-V4-Flash-MLX-mixed-4_8bit": {
-          "name": "DeepSeek-V4-Flash-MLX-mixed-4_8bit",
-          "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -54,10 +40,14 @@
           }
         },
         "Qwen3-235B-A22B-MLX-4bit": {
-          "name": "Qwen3-235B-A22B-MLX-4bit",
+          "name": "[omlxremote] Qwen3-235B-A22B-MLX-4bit",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 40960,
@@ -65,10 +55,14 @@
           }
         },
         "Qwen3.5-122B-A10B-MLX-9bit": {
-          "name": "Qwen3.5-122B-A10B-MLX-9bit",
+          "name": "[omlxremote] Qwen3.5-122B-A10B-MLX-9bit",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -76,10 +70,14 @@
           }
         },
         "Qwen3.8-27B-Uncensored-MLX": {
-          "name": "Qwen3.8-27B-Uncensored-MLX",
+          "name": "[omlxremote] Qwen3.8-27B-Uncensored (MLX DFlash2)",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
@@ -87,32 +85,122 @@
           }
         },
         "Qwen3.8-27B-FP16_huzar_v1": {
-          "name": "Qwen3.8-27B-FP16_huzar_v1",
+          "name": "[omlxremote] Qwen3.8-27B-FP16_huzar_v1 (MLX DFlash2)",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
             "output": 32768
           }
         },
-        "Qwen3.8-27B-MTPLX-Optimized-Quality-FP16": {
-          "name": "Qwen3.8-27B-MTPLX-Optimized-Quality-FP16",
+        "Step-3.5-Flash-4bit": {
+          "name": "[omlxremote] Step-3.5-Flash-4bit",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
             "context": 262144,
             "output": 32768
           }
         },
-        "Qwen3.8-Flash-Next-MLX-6bit": {
-          "name": "Qwen3.8-Flash-Next-MLX-6bit",
+        "DeepSeek-V4-Flash-0731-MXFP4-MLX": {
+          "name": "[omlxremote] DeepSeek-V4-Flash-0731-MXFP4-MLX",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "Laguna-S-2.1-MLX-8bit": {
+          "name": "[omlxremote] Laguna-S-2.1-MLX-8bit",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "MiniMax-M3-ConfigI-MLX": {
+          "name": "[omlxremote] MiniMax-M3-ConfigI-MLX",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "attachment": true,
+          "limit": {
+            "context": 131072,
+            "output": 32768
+          }
+        },
+        "Ornith-1.5-35B-A3B-Abliterated-MLX-BF16": {
+          "name": "[omlxremote] Ornith-1.5-35B-A3B-Abliterated-MLX-BF16",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "Qwen3.8-27B-FP16_huzar_v1-SPLASH": {
+          "name": "[omlxremote] Qwen3.8-27B-FP16_huzar_v1 (SPLASH)",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "Qwen3.8-27B-Uncensored-MLX-SPLASH": {
+          "name": "[omlxremote] Qwen3.8-27B-Uncensored (SPLASH)",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "attachment": true,
           "limit": {
@@ -120,41 +208,125 @@
             "output": 32768
           }
         },
-        "Step-3.5-Flash-4bit": {
-          "name": "Step-3.5-Flash-4bit",
+        "Qwen3.8-Flash-Next-MTPLX-Optimized-Speed": {
+          "name": "[omlxremote] Qwen3.8-Flash-Next-MTPLX-Optimized-Speed",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
+          "attachment": true,
           "limit": {
             "context": 262144,
             "output": 32768
           }
         },
-        "Bielik-11B-v3.0-Instruct-MLX-8bit": {
-          "name": "Bielik-11B-v3.0-Instruct-MLX-8bit",
+        "Qwen3.8-Flash-Next-oQ5e-mtp": {
+          "name": "[omlxremote] Qwen3.8-Flash-Next-oQ5e-mtp",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
+          "attachment": true,
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "UI-Venus-1.5-30B-A3B-qx86-hi-mlx": {
+          "name": "[omlxremote] UI-Venus-1.5-30B-A3B-qx86-hi-mlx",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "attachment": true,
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "Unlimited-OCR-8bit": {
+          "name": "[omlxremote] Unlimited-OCR-8bit",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "attachment": true,
           "limit": {
             "context": 32768,
+            "output": 8192
+          }
+        },
+        "olmOCR-2-7B-1025-8bit": {
+          "name": "[omlxremote] olmOCR-2-7B-1025-8bit",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "attachment": true,
+          "limit": {
+            "context": 128000,
             "output": 16384
           }
         },
-        "Bielik-11B-v3.0-Huzar-MLX-8bit-v1": {
-          "name": "Bielik-11B-v3.0-Huzar-MLX-8bit-v1",
+        "Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2": {
+          "name": "[omlxremote] Qwen3.8-27B-Coder390 (VLM · MTP)",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "attachment": true,
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "flint-oQ8e": {
+          "name": "[omlxremote] flint-oQ8e",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "limit": {
-            "context": 32768,
-            "output": 16384
+            "context": 262144,
+            "output": 32768
           }
         }
       }
     }
   },
-  "model": "omlx/Qwen3.8-27B-Uncensored-MLX"
+  "model": "omlxremote/Qwen3.8-27B-Uncensored-MLX-SPLASH"
 }

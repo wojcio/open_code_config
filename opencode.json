@@ -54,7 +54,7 @@
           }
         },
         "Qwen3.8-27B-Uncensored-MLX": {
-          "name": "Qwen3.8-27B-Uncensored-MLX",
+          "name": "Qwen3.8-27B-Uncensored (MLX DFlash2)",
           "modalities": {
             "input": ["text"],
             "output": ["text"]
@@ -65,7 +65,7 @@
           }
         },
         "Qwen3.8-27B-FP16_huzar_v1": {
-          "name": "Qwen3.8-27B-FP16_huzar_v1",
+          "name": "Qwen3.8-27B-FP16_huzar_v1 (MLX DFlash2)",
           "modalities": {
             "input": ["text"],
             "output": ["text"]
@@ -111,9 +111,10 @@
         "MiniMax-M3-ConfigI-MLX": {
           "name": "MiniMax-M3-ConfigI-MLX",
           "modalities": {
-            "input": ["text"],
+            "input": ["text", "image"],
             "output": ["text"]
           },
+          "attachment": true,
           "limit": {
             "context": 131072,
             "output": 32768
@@ -144,9 +145,10 @@
         "Qwen3.8-27B-Uncensored-MLX-SPLASH": {
           "name": "Qwen3.8-27B-Uncensored (SPLASH)",
           "modalities": {
-            "input": ["text"],
+            "input": ["text", "image"],
             "output": ["text"]
           },
+          "attachment": true,
           "limit": {
             "context": 262144,
             "output": 32768
@@ -155,9 +157,10 @@
         "Qwen3.8-Flash-Next-MTPLX-Optimized-Speed": {
           "name": "Qwen3.8-Flash-Next-MTPLX-Optimized-Speed",
           "modalities": {
-            "input": ["text"],
+            "input": ["text", "image"],
             "output": ["text"]
           },
+          "attachment": true,
           "limit": {
             "context": 262144,
             "output": 32768
@@ -166,9 +169,10 @@
         "Qwen3.8-Flash-Next-oQ5e-mtp": {
           "name": "Qwen3.8-Flash-Next-oQ5e-mtp",
           "modalities": {
-            "input": ["text"],
+            "input": ["text", "image"],
             "output": ["text"]
           },
+          "attachment": true,
           "limit": {
             "context": 262144,
             "output": 32768
@@ -211,18 +215,19 @@
           }
         },
         "Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2": {
-          "name": "Qwen3.8-27B-Coder390 (DFlash2)",
+          "name": "Qwen3.8-27B-Coder390 (VLM · MTP)",
           "modalities": {
-            "input": ["text"],
+            "input": ["text", "image"],
             "output": ["text"]
           },
+          "attachment": true,
           "limit": {
             "context": 262144,
             "output": 32768
           }
         },
-        "Qwen3.8-27B-DFlash2": {
-          "name": "Qwen3.8-27B-DFlash2",
+        "flint-oQ8e": {
+          "name": "flint-oQ8e",
           "modalities": {
             "input": ["text"],
             "output": ["text"]

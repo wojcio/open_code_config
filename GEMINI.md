@@ -5,14 +5,16 @@ Globalne repozytorium konfiguracji dla narzędzia OpenCode CLI (`~/.config/openc
 Zarządza definicjami providerów modeli AI, w szczególności lokalnego serwera inferencyjnego oMLX na Apple Silicon (Mac Studio M2 Ultra 192GB).
 
 ## 🏗️ Architektura i Decyzje
-- **Główny provider:** `oMLX` pod adresem `http://127.0.0.1:8000/v1` za pośrednictwem biblioteki `@ai-sdk/openai-compatible`.
-- **Obsługa modeli:** Pełny zestaw 13 zoptymalizowanych modeli MLX:
-  - Dedykowane do programowania: `Qwen3-Coder-Next-MLX-8bit`, `Qwen3-Coder-Next-MLX-9bit`
-  - Zaawansowany reasoning i kod: `DeepSeek-V4-Flash-0731-AWQ`, `DeepSeek-V4-Flash-MLX-mixed-4_8bit`
-  - Duże modele MoE: `Qwen3-235B-A22B-MLX-4bit`, `Qwen3.5-122B-A10B-MLX-9bit`
-  - Wersje ogólne i nieskwantyzowane: `Qwen3.8-27B-Uncensored-MLX`, `Qwen3.8-27B-FP16_huzar_v1`, `Qwen3.8-27B-MTPLX-Optimized-Quality-FP16`
-  - Szybkie i multimodalne: `Qwen3.8-Flash-Next-MLX-6bit` (vision/obrazy), `Step-3.5-Flash-4bit`
-  - Polskie modele konwersacyjne: `Bielik-11B-v3.0-Instruct-MLX-8bit`, `Bielik-11B-v3.0-Huzar-MLX-8bit-v1`
+- **Główny provider:** `oMLX` (`oMLX 0.7.4.dev1` + `Splash 1.5.0-m1`) pod adresem `http://127.0.0.1:8000/v1` (oraz `omlxremote` pod `http://100.123.37.101:8000/v1`) za pośrednictwem biblioteki `@ai-sdk/openai-compatible`.
+- **Obsługa modeli:** Pełny zestaw **20 skonfigurowanych modeli** (1:1 z `model_settings.json` w oMLX; pomocniczy drafter `Qwen3.8-27B-DFlash2` wykluczony z listy czatowej):
+  - **Dedykowane do programowania i agentów:** `flint-oQ8e` (MoE 39.8B, 2.5B akt./tok), `Qwen3-Coder-Next-MLX-9bit`, `Qwen3.8-27B-Coder390-...-MTP-DFlash2` (`Qwen3.8-27B-Coder390 (VLM · MTP)`, VLM + Lightning MTP)
+  - **Zaawansowany reasoning i architektura:** `DeepSeek-V4-Flash-0731-MXFP4-MLX`, `DeepSeek-V4-Flash-0731-AWQ`
+  - **Duże modele MoE:** `Qwen3.5-122B-A10B-MLX-9bit`, `Qwen3-235B-A22B-MLX-4bit`, `MiniMax-M3-ConfigI-MLX` (VLM)
+  - **Modele 27B (pary `SPLASH` 1.5.0-m1 vs natywny `MLX DFlash2`):**
+    - `Qwen3.8-27B-Uncensored-MLX-SPLASH` (`Qwen3.8-27B-Uncensored (SPLASH)`, domyślny model OpenCode, VLM) oraz `Qwen3.8-27B-Uncensored-MLX` (`Qwen3.8-27B-Uncensored (MLX DFlash2)`)
+    - `Qwen3.8-27B-FP16_huzar_v1-SPLASH` (`Qwen3.8-27B-FP16_huzar_v1 (SPLASH)`) oraz `Qwen3.8-27B-FP16_huzar_v1` (`Qwen3.8-27B-FP16_huzar_v1 (MLX DFlash2)`)
+  - **Szybkie modele hybrydowe i VLM:** `Qwen3.8-Flash-Next-oQ5e-mtp` (VLM, FP16 recast + MTP), `Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` (VLM, FP16 recast), `Step-3.5-Flash-4bit`, `Laguna-S-2.1-MLX-8bit`, `Ornith-1.5-35B-A3B-Abliterated-MLX-BF16`
+  - **Specjalistyczne Vision / OCR:** `UI-Venus-1.5-30B-A3B-qx86-hi-mlx`, `olmOCR-2-7B-1025-8bit`, `Unlimited-OCR-8bit`
 - **Pojedynczy plik konfiguracyjny:** Użycie wyłącznie `opencode.json` (wykluczenie `opencode.jsonc`), aby zapobiec konfliktom i niepożądanemu blokowaniu providerów.
 
 ## 📁 Struktura Plików
@@ -25,10 +27,14 @@ Zarządza definicjami providerów modeli AI, w szczególności lokalnego serwera
 | `GEMINI.md` | Kontekst projektu, architektura i stan dla Antigravity |
 
 ## 🔄 Ostatnie Zmiany i Stan Projektu
-- Zainicjalizowano repozytorium Git i podłączono remote `git@github.com:wojcio/open_code_config.git`.
-- Skonfigurowano i przetestowano 13 modeli na serwerze oMLX.
-- Dodano `opencode.json.remote` z adresem `http://100.123.37.101:8000/v1` (Tailscale/VPN) umożliwiający uruchamianie OpenCode na laptopie ze zdalnym serwerem oMLX na Mac Studio.
+- **4 Listopada 2026 (oMLX 0.7.4.dev1 & Splash 1.5.0-m1):**
+  - Usunięto techniczny model pomocniczy `Qwen3.8-27B-DFlash2` (`DFlash2DraftModel`) z `opencode.json` i `opencode.json.remote` (dokładnie 20 modeli użytkowych).
+  - Rozróżniono czytelnie etykiety par modeli 27B: `(SPLASH)` vs `(MLX DFlash2)`, a `Coder390` oznaczono zgodnie z faktycznym silnikiem jako `Qwen3.8-27B-Coder390 (VLM · MTP)`.
+  - Odblokowano modalność `"image"` oraz `"attachment": true` dla wszystkich 8 modeli VLM (`Coder390`, `Flash-Next-oQ5e-mtp`, `Flash-Next-MTPLX-Optimized-Speed`, `MiniMax-M3-ConfigI-MLX`, `Qwen3.8-27B-Uncensored-MLX-SPLASH`, `UI-Venus-1.5-30B`, `Unlimited-OCR-8bit`, `olmOCR-2-7B-1025-8bit`).
+- Dodano model `flint-oQ8e` (kontekst 262k, output 32k) do konfiguracji lokalnej (`opencode.json`) i zdalnej (`opencode.json.remote`).
 - Przeprowadzono chrzest bojowy i test obciążeniowy modelu `omlx/DeepSeek-V4-Flash-0731-MXFP4-MLX` na kontekście 171k tokenów (udokumentowano w sekcji poniżej oraz w README.md).
+- Dodano `opencode.json.remote` z adresem `http://100.123.37.101:8000/v1` (Tailscale/VPN) umożliwiający uruchamianie OpenCode na laptopie ze zdalnym serwerem oMLX na Mac Studio.
+- Zainicjalizowano repozytorium Git i podłączono remote `git@github.com:wojcio/open_code_config.git`.
 
 ## 🧪 Chrzest Bojowy i Use Case: DeepSeek-V4-Flash-0731-MXFP4-MLX (171k tokenów)
 - **Kontekst testu:** Rzeczywiste zapytanie agenta OpenCode w rozbudowanej sesji roboczej (prompt wejściowy: **171 334 tokeny**).
