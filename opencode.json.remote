@@ -9,6 +9,38 @@
         "apiKey": "sk-omlx-0Thr9X0jHr1U2T2ReS17j6Vi"
       },
       "models": {
+        "Qwen3.8-Flash-Next-oQ5e-mtp": {
+          "name": "[omlxremote] Qwen3.8-Flash-Next-oQ5e-mtp (Qwen 3.8 Flash · Lightning MTP · VLM)",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "Qwen3.8-Flash-Next-MTPLX-Optimized-Speed": {
+          "name": "[omlxremote] Qwen3.8-Flash-Next-MTPLX-Optimized-Speed (Qwen 3.8 Flash · N-gram · VLM)",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
         "Qwen3-Coder-Next-MLX-9bit": {
           "name": "[omlxremote] Qwen3-Coder-Next-MLX-9bit",
           "modalities": {
@@ -155,7 +187,6 @@
               "text"
             ]
           },
-          "attachment": true,
           "limit": {
             "context": 131072,
             "output": 32768
@@ -202,41 +233,6 @@
               "text"
             ]
           },
-          "attachment": true,
-          "limit": {
-            "context": 262144,
-            "output": 32768
-          }
-        },
-        "Qwen3.8-Flash-Next-MTPLX-Optimized-Speed": {
-          "name": "[omlxremote] Qwen3.8-Flash-Next-MTPLX-Optimized-Speed",
-          "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
-          },
-          "attachment": true,
-          "limit": {
-            "context": 262144,
-            "output": 32768
-          }
-        },
-        "Qwen3.8-Flash-Next-oQ5e-mtp": {
-          "name": "[omlxremote] Qwen3.8-Flash-Next-oQ5e-mtp",
-          "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
-          },
-          "attachment": true,
           "limit": {
             "context": 262144,
             "output": 32768
@@ -253,7 +249,6 @@
               "text"
             ]
           },
-          "attachment": true,
           "limit": {
             "context": 262144,
             "output": 32768
@@ -270,7 +265,6 @@
               "text"
             ]
           },
-          "attachment": true,
           "limit": {
             "context": 32768,
             "output": 8192
@@ -287,7 +281,6 @@
               "text"
             ]
           },
-          "attachment": true,
           "limit": {
             "context": 128000,
             "output": 16384
@@ -304,7 +297,6 @@
               "text"
             ]
           },
-          "attachment": true,
           "limit": {
             "context": 262144,
             "output": 32768

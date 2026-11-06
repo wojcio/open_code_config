@@ -57,8 +57,8 @@ The `models` list mirrors the 20 chat/vision models configured on the oMLX serve
 SPLASH variants are separate model IDs exposed by the oMLX server (`external_engine: "splash"` running `Splash 1.5.0-m1` with DFlash2 speculative decoding), so they are configured as their own entries rather than OpenCode `variants` (which cannot change the `modelID` sent to the server). The helper drafter checkpoint `Qwen3.8-27B-DFlash2` (`DFlash2DraftModel`) is excluded from the chat picker.
 
 ### Flash & Speed (VLM + FP16 Activation Recast)
-- `omlx/Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` (vision enabled)
-- `omlx/Qwen3.8-Flash-Next-oQ5e-mtp` (vision enabled)
+- `omlx/Qwen3.8-Flash-Next-oQ5e-mtp` (displayed at the top as `"Qwen3.8-Flash-Next-oQ5e-mtp (Qwen 3.8 Flash · Lightning MTP · VLM)"`, vision enabled)
+- `omlx/Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` (displayed at the top as `"Qwen3.8-Flash-Next-MTPLX-Optimized-Speed (Qwen 3.8 Flash · N-gram · VLM)"`, vision enabled)
 - `omlx/Step-3.5-Flash-4bit`
 
 ### Vision / OCR
@@ -86,6 +86,11 @@ Weryfikacja zachowania lokalnego serwera oMLX oraz klienta OpenCode pod ekstrema
   - Przy rozpoczynaniu nowego, niepowiązanego zadania warto utworzyć nową sesję w OpenCode, by uniknąć długiego prefillu cold-start. W sesjach wieloturowych Paged Prefix Cache redukuje kolejne odpowiedzi do kilkunastu sekund.
 
 ## Changelog
+
+### 2026-11-06 — wyróżnienie Qwen 3.8 Flash na szczycie listy i oczyszczenie schematu OpenCode 2.2.5
+- Przesunięto najszybsze modele `Qwen3.8-Flash-Next-oQ5e-mtp` (~62.6–97 tok/s z Lightning MTP + FP16 recast) oraz `Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` (~73.5 tok/s z tablicą N-gramów + FP16 recast) na pierwsze dwie pozycje w `opencode.json` i `opencode.json.remote`.
+- Rozbudowano etykiety wyświetlane w pickerze `/models` o frazę `(Qwen 3.8 Flash · ...)`, dzięki czemu wyszukiwanie zarówno ze spacją (`Qwen 3.8`), jak i bez (`Qwen3.8`) natychmiast filtruje oba modele.
+- Usunięto wycofane w OpenCode 2.2.5 pole `"attachment": true` (obsługiwane natywnie przez `"modalities": { "input": ["text", "image"] }`), eliminując ostrzeżenia `configuration normalization diagnostic` w logach.
 
 ### 2026-11-04 — oMLX 0.7.4.dev1 & Splash 1.5.0-m1, VLM unlock, drafter cleanup
 - Usunięto z listy wyboru OpenCode techniczny model pomocniczy `Qwen3.8-27B-DFlash2` (`DFlash2DraftModel`), pozostawiając dokładnie **20 modeli użytkowych**.

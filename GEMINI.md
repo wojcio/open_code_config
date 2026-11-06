@@ -27,6 +27,10 @@ Zarządza definicjami providerów modeli AI, w szczególności lokalnego serwera
 | `GEMINI.md` | Kontekst projektu, architektura i stan dla Antigravity |
 
 ## 🔄 Ostatnie Zmiany i Stan Projektu
+- **6 Listopada 2026 (Wyróżnienie Qwen 3.8 Flash i kompatybilność z OpenCode 2.2.5):**
+  - Przesunięto oba najszybsze modele `Qwen3.8-Flash-Next-oQ5e-mtp` oraz `Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` na sam szczyt listy `"models"` w `opencode.json` oraz `opencode.json.remote`.
+  - Dodano czytelne etykiety wyświetlane (`"Qwen3.8-Flash-Next-oQ5e-mtp (Qwen 3.8 Flash · Lightning MTP · VLM)"` oraz `"Qwen3.8-Flash-Next-MTPLX-Optimized-Speed (Qwen 3.8 Flash · N-gram · VLM)"`), umożliwiające filtrowanie w pickerze `/models` również po wpisaniu `Qwen 3.8` ze spacją.
+  - Usunięto przestarzałe pole `"attachment": true` (zastąpione w OpenCode 2.2.5 przez `"modalities": { "input": ["text", "image"] }`), eliminując ostrzeżenia normalizacji konfiguracji przy starcie.
 - **4 Listopada 2026 (oMLX 0.7.4.dev1 & Splash 1.5.0-m1):**
   - Usunięto techniczny model pomocniczy `Qwen3.8-27B-DFlash2` (`DFlash2DraftModel`) z `opencode.json` i `opencode.json.remote` (dokładnie 20 modeli użytkowych).
   - Rozróżniono czytelnie etykiety par modeli 27B: `(SPLASH)` vs `(MLX DFlash2)`, a `Coder390` oznaczono zgodnie z faktycznym silnikiem jako `Qwen3.8-27B-Coder390 (VLM · MTP)`.
