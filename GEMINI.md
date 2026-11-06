@@ -27,10 +27,12 @@ Zarządza definicjami providerów modeli AI, w szczególności lokalnego serwera
 | `GEMINI.md` | Kontekst projektu, architektura i stan dla Antigravity |
 
 ## 🔄 Ostatnie Zmiany i Stan Projektu
-- **6 Listopada 2026 (Wyróżnienie Qwen 3.8 Flash i kompatybilność z OpenCode 2.2.5):**
-  - Przesunięto oba najszybsze modele `Qwen3.8-Flash-Next-oQ5e-mtp` oraz `Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` na sam szczyt listy `"models"` w `opencode.json` oraz `opencode.json.remote`.
+- **6–7 Listopada 2026 (Splash 1.6.0-m1, wyróżnienie Qwen 3.8 Flash i chrzest bojowy 225k kontekstu w OpenCode 2.2.5):**
+  - Zaktualizowano silnik `/opt/homebrew/bin/splash-m1` do **`Splash 1.6.0-m1`** (zarządca pamięci `One memory ledger`, optymalizacja `Idle KV` #644, ANE FFN split `share 0.26` dla $\ge 551$ wierszy: 54.1 ms vs 70.0 ms GPU, generowanie `Qwen3.8-27B-Uncensored-MLX-SPLASH` z prędkością **50.2–62.0 tok/s** i TTFT **0.39s**).
+  - Przesunięto oba najszybsze modele `Qwen3.8-Flash-Next-oQ5e-mtp` oraz `Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` na sam szczyt listy `"models"` w `opencode.json` oraz `opencode.json.remote` i dodano oba modele (wraz z `DeepSeek-V4-Flash-0731-MXFP4-MLX` i `DeepSeek-V4-Flash-0731-AWQ`) do `favorite`.
   - Dodano czytelne etykiety wyświetlane (`"Qwen3.8-Flash-Next-oQ5e-mtp (Qwen 3.8 Flash · Lightning MTP · VLM)"` oraz `"Qwen3.8-Flash-Next-MTPLX-Optimized-Speed (Qwen 3.8 Flash · N-gram · VLM)"`), umożliwiające filtrowanie w pickerze `/models` również po wpisaniu `Qwen 3.8` ze spacją.
   - Usunięto przestarzałe pole `"attachment": true` (zastąpione w OpenCode 2.2.5 przez `"modalities": { "input": ["text", "image"] }`), eliminując ostrzeżenia normalizacji konfiguracji przy starcie.
+  - Potwierdzono w długiej sesji produkcyjnej OpenCode (185+ tur narzędziowych, kontekst rosnący aż do **225 280 tokenów**), że `Qwen3.8-Flash-Next-oQ5e-mtp` z `"activation_fp16_enabled": true` utrzymuje **42.3 – 58.8 tok/s** (w tym **51.9 tok/s** przy 218.8k kontekstu i TTFT 1.38–3.29s dzięki Paged Prefix Cache).
 - **4 Listopada 2026 (oMLX 0.7.4.dev1 & Splash 1.5.0-m1):**
   - Usunięto techniczny model pomocniczy `Qwen3.8-27B-DFlash2` (`DFlash2DraftModel`) z `opencode.json` i `opencode.json.remote` (dokładnie 20 modeli użytkowych).
   - Rozróżniono czytelnie etykiety par modeli 27B: `(SPLASH)` vs `(MLX DFlash2)`, a `Coder390` oznaczono zgodnie z faktycznym silnikiem jako `Qwen3.8-27B-Coder390 (VLM · MTP)`.
