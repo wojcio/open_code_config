@@ -20,6 +20,17 @@
             "output": 32768
           }
         },
+        "Qwen3.8-Flash-Next-oQ6e-mtp": {
+          "name": "[omlxremote] Qwen3.8-Flash-Next-oQ6e-mtp (Qwen 3.8 Flash · 6-bit · Lightning MTP · VLM)",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
         "Qwen3.8-Flash-Next-MTPLX-Optimized-Speed": {
           "name": "[omlxremote] Qwen3.8-Flash-Next-MTPLX-Optimized-Speed (Qwen 3.8 Flash · N-gram · VLM)",
           "modalities": {
@@ -31,8 +42,74 @@
             "output": 32768
           }
         },
+        "GLM-5.3-Flash-oQ4e-mtp": {
+          "name": "[omlxremote] GLM-5.3-Flash-oQ4e-mtp (GLM 5.3 Flash 320B · 4-bit · Lightning MTP · VLM)",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "GLM-5.3-Flash-oQ2e-mtp": {
+          "name": "[omlxremote] GLM-5.3-Flash-oQ2e-mtp (GLM 5.3 Flash 320B · 2-bit · Lightning MTP · VLM)",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "gemma-4-12B-it-oQ8e-mtp": {
+          "name": "[omlxremote] gemma-4-12B-it-oQ8e-mtp (Gemma 4 12B · 8-bit · Lightning MTP · VLM/Audio)",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "gemma-4-31B-it-oQ6e-mtp": {
+          "name": "[omlxremote] gemma-4-31B-it-oQ6e-mtp (Gemma 4 31B · 6-bit · Lightning MTP · VLM)",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "Ternary-Bonsai-2-27B-MTPLX-Optimized-Speed": {
+          "name": "[omlxremote] Ternary-Bonsai-2-27B-MTPLX-Optimized-Speed (2-bit Hadamard · 8.2 GB · VLM)",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "Nanbeige4.3-33B-MLX-6bit": {
+          "name": "[omlxremote] Nanbeige4.3-33B-MLX-6bit (Dense 33B · 512k Context)",
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          },
+          "limit": {
+            "context": 524288,
+            "output": 32768
+          }
+        },
         "Qwen3-Coder-Next-MLX-9bit": {
-          "name": "[omlxremote] Qwen3-Coder-Next-MLX-9bit",
+          "name": "[omlxremote] [HDD] Qwen3-Coder-Next-MLX-9bit",
           "modalities": {
             "input": ["text"],
             "output": ["text"]
@@ -54,7 +131,7 @@
           }
         },
         "Qwen3-235B-A22B-MLX-4bit": {
-          "name": "[omlxremote] Qwen3-235B-A22B-MLX-4bit",
+          "name": "[omlxremote] [HDD] Qwen3-235B-A22B-MLX-4bit",
           "modalities": {
             "input": ["text"],
             "output": ["text"]
@@ -65,7 +142,7 @@
           }
         },
         "Qwen3.5-122B-A10B-MLX-9bit": {
-          "name": "[omlxremote] Qwen3.5-122B-A10B-MLX-9bit",
+          "name": "[omlxremote] [HDD] Qwen3.5-122B-A10B-MLX-9bit",
           "modalities": {
             "input": ["text"],
             "output": ["text"]

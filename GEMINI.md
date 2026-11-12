@@ -5,16 +5,18 @@ Globalne repozytorium konfiguracji dla narzędzia OpenCode CLI (`~/.config/openc
 Zarządza definicjami providerów modeli AI, w szczególności lokalnego serwera inferencyjnego oMLX na Apple Silicon (Mac Studio M2 Ultra 192GB).
 
 ## 🏗️ Architektura i Decyzje
-- **Główny provider:** `oMLX` (`oMLX 0.7.4.dev1` + `Splash 1.5.0-m1`) pod adresem `http://127.0.0.1:8000/v1` (oraz `omlxremote` pod `http://100.123.37.101:8000/v1`) za pośrednictwem biblioteki `@ai-sdk/openai-compatible`.
-- **Obsługa modeli:** Pełny zestaw **20 skonfigurowanych modeli** (1:1 z `model_settings.json` w oMLX; pomocniczy drafter `Qwen3.8-27B-DFlash2` wykluczony z listy czatowej):
-  - **Dedykowane do programowania i agentów:** `flint-oQ8e` (MoE 39.8B, 2.5B akt./tok), `Qwen3-Coder-Next-MLX-9bit`, `Qwen3.8-27B-Coder390-...-MTP-DFlash2` (`Qwen3.8-27B-Coder390 (VLM · MTP)`, VLM + Lightning MTP)
+- **Główny provider:** `oMLX` (`oMLX 0.7.4.dev1` + `Splash 1.6.0-m1`, sufit pamięci 186 GB) pod adresem `http://127.0.0.1:8000/v1` (oraz `omlxremote` pod `http://100.123.37.101:8000/v1`) za pośrednictwem biblioteki `@ai-sdk/openai-compatible`.
+- **Obsługa modeli:** Pełny zestaw **27 skonfigurowanych modeli** (1:1 z `model_settings.json` w oMLX; pomocniczy drafter `Qwen3.8-27B-DFlash2` wykluczony z listy czatowej):
+  - **Szybkie modele hybrydowe Qwen 3.8 Flash (VLM + FP16 Recast + MTP):** `Qwen3.8-Flash-Next-oQ5e-mtp` (67.5–73.0 tok/s), `Qwen3.8-Flash-Next-oQ6e-mtp` (6-bit, 60.6–63.9 tok/s), `Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` (~73.5 tok/s)
+  - **Nowa rodzina GLM-5.3-Flash 320B MoE (18B akt./tok, VLM + Lightning MTP):** `GLM-5.3-Flash-oQ4e-mtp` (173.9 GB RAM, 25.9–29.9 tok/s, TTFT 0.17s) oraz `GLM-5.3-Flash-oQ2e-mtp` (102.9 GB RAM, **32.1–37.6 tok/s**)
+  - **Szybkie modele Gemma 4, Bonsai-2 i Nanbeige 4.3:** `gemma-4-12B-it-oQ8e-mtp` (VLM/Audio, 51.4–68.4 tok/s, 13 GB), `gemma-4-31B-it-oQ6e-mtp` (VLM, 32.4–34.0 tok/s, 26.3 GB), `Ternary-Bonsai-2-27B-MTPLX-Optimized-Speed` (VLM, 2-bit Hadamard, 8.2 GB, 31.4 tok/s), `Nanbeige4.3-33B-MLX-6bit` (okno **512k**, 19.6 tok/s, 25.2 GB)
+  - **Dedykowane do programowania i agentów:** `flint-oQ8e` (MoE 39.8B, 2.5B akt./tok, do 74.1 tok/s), `Qwen3.8-27B-Coder390-...-MTP-DFlash2` (`Qwen3.8-27B-Coder390 (VLM · MTP)`, VLM + Lightning MTP)
   - **Zaawansowany reasoning i architektura:** `DeepSeek-V4-Flash-0731-MXFP4-MLX`, `DeepSeek-V4-Flash-0731-AWQ`
-  - **Duże modele MoE:** `Qwen3.5-122B-A10B-MLX-9bit`, `Qwen3-235B-A22B-MLX-4bit`, `MiniMax-M3-ConfigI-MLX` (VLM)
-  - **Modele 27B (pary `SPLASH` 1.5.0-m1 vs natywny `MLX DFlash2`):**
+  - **Modele 27B (pary `SPLASH` 1.6.0-m1 vs natywny `MLX DFlash2`):**
     - `Qwen3.8-27B-Uncensored-MLX-SPLASH` (`Qwen3.8-27B-Uncensored (SPLASH)`, domyślny model OpenCode, VLM) oraz `Qwen3.8-27B-Uncensored-MLX` (`Qwen3.8-27B-Uncensored (MLX DFlash2)`)
     - `Qwen3.8-27B-FP16_huzar_v1-SPLASH` (`Qwen3.8-27B-FP16_huzar_v1 (SPLASH)`) oraz `Qwen3.8-27B-FP16_huzar_v1` (`Qwen3.8-27B-FP16_huzar_v1 (MLX DFlash2)`)
-  - **Szybkie modele hybrydowe i VLM:** `Qwen3.8-Flash-Next-oQ5e-mtp` (VLM, FP16 recast + MTP), `Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` (VLM, FP16 recast), `Step-3.5-Flash-4bit`, `Laguna-S-2.1-MLX-8bit`, `Ornith-1.5-35B-A3B-Abliterated-MLX-BF16`
-  - **Specjalistyczne Vision / OCR:** `UI-Venus-1.5-30B-A3B-qx86-hi-mlx`, `olmOCR-2-7B-1025-8bit`, `Unlimited-OCR-8bit`
+  - **Archiwum na zewnętrznym dysku HDD (`[HDD]`):** `Qwen3.5-122B-A10B-MLX-9bit`, `Qwen3-Coder-Next-MLX-9bit`, `Qwen3-235B-A22B-MLX-4bit` (podlinkowane z `/Volumes/Seagate_Expansion_Drive/LLM`)
+  - **Pozostałe modele i Vision / OCR:** `MiniMax-M3-ConfigI-MLX` (VLM), `Step-3.5-Flash-4bit`, `Laguna-S-2.1-MLX-8bit`, `Ornith-1.5-35B-A3B-Abliterated-MLX-BF16`, `UI-Venus-1.5-30B-A3B-qx86-hi-mlx`, `olmOCR-2-7B-1025-8bit`, `Unlimited-OCR-8bit`
 - **Pojedynczy plik konfiguracyjny:** Użycie wyłącznie `opencode.json` (wykluczenie `opencode.jsonc`), aby zapobiec konfliktom i niepożądanemu blokowaniu providerów.
 
 ## 📁 Struktura Plików
@@ -27,6 +29,10 @@ Zarządza definicjami providerów modeli AI, w szczególności lokalnego serwera
 | `GEMINI.md` | Kontekst projektu, architektura i stan dla Antigravity |
 
 ## 🔄 Ostatnie Zmiany i Stan Projektu
+- **12 Listopada 2026 (Wdrożenie 7 nowych modeli MLX/MTP oraz archiwizacja `[HDD]` 3 starszych modeli Qwen):**
+  - Dodano 7 nowych modeli do `opencode.json` i `opencode.json.remote` (łącznie **27 modeli**): `Qwen3.8-Flash-Next-oQ6e-mtp`, `GLM-5.3-Flash-oQ4e-mtp`, `GLM-5.3-Flash-oQ2e-mtp`, `gemma-4-12B-it-oQ8e-mtp`, `gemma-4-31B-it-oQ6e-mtp`, `Ternary-Bonsai-2-27B-MTPLX-Optimized-Speed` oraz `Nanbeige4.3-33B-MLX-6bit` (512k kontekstu).
+  - Dodano oznaczenie `[HDD]` dla 3 starszych modeli Qwen (`Qwen3-235B-A22B-MLX-4bit`, `Qwen3-Coder-Next-MLX-9bit`, `Qwen3.5-122B-A10B-MLX-9bit`) przeniesionych na zewnętrzny dysk `/Volumes/Seagate_Expansion_Drive/LLM` (odzyskano 328 GiB na wewnętrznym SSD).
+  - Uzupełniono listę `favorite` w `~/.local/state/opencode/model.json`.
 - **6–7 Listopada 2026 (Splash 1.6.0-m1, wyróżnienie Qwen 3.8 Flash i chrzest bojowy 225k kontekstu w OpenCode 2.2.5):**
   - Zaktualizowano silnik `/opt/homebrew/bin/splash-m1` do **`Splash 1.6.0-m1`** (zarządca pamięci `One memory ledger`, optymalizacja `Idle KV` #644, ANE FFN split `share 0.26` dla $\ge 551$ wierszy: 54.1 ms vs 70.0 ms GPU, generowanie `Qwen3.8-27B-Uncensored-MLX-SPLASH` z prędkością **50.2–62.0 tok/s** i TTFT **0.39s**).
   - Przesunięto oba najszybsze modele `Qwen3.8-Flash-Next-oQ5e-mtp` oraz `Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` na sam szczyt listy `"models"` w `opencode.json` oraz `opencode.json.remote` i dodano oba modele (wraz z `DeepSeek-V4-Flash-0731-MXFP4-MLX` i `DeepSeek-V4-Flash-0731-AWQ`) do `favorite`.

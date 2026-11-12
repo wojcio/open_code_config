@@ -34,32 +34,41 @@ Provider conventions:
 The local variant (`opencode.json`) connects to the local OpenAI-compatible
 endpoint at `http://127.0.0.1:8000/v1`; the remote variant (`opencode.json.remote`)
 uses the same port over the VPN address `http://100.123.37.101:8000/v1`.
-The `models` list mirrors the 20 chat/vision models configured on the oMLX server (`oMLX 0.7.4.dev1` + `Splash 1.5.0-m1`).
+The `models` list mirrors the **27 chat/vision models** configured on the oMLX server (`oMLX 0.7.4.dev1` + `Splash 1.6.0-m1`, 186 GB RAM ceiling).
+
+### Flash & Speed (VLM + FP16 Activation Recast + Lightning MTP)
+- `omlx/Qwen3.8-Flash-Next-oQ5e-mtp` (displayed at the top as `"Qwen3.8-Flash-Next-oQ5e-mtp (Qwen 3.8 Flash · Lightning MTP · VLM)"`, **67.5–73.0 tok/s**, vision enabled)
+- `omlx/Qwen3.8-Flash-Next-oQ6e-mtp` (displayed as `"Qwen3.8-Flash-Next-oQ6e-mtp (Qwen 3.8 Flash · 6-bit · Lightning MTP · VLM)"`, **60.6–63.9 tok/s**, vision enabled)
+- `omlx/Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` (displayed as `"Qwen3.8-Flash-Next-MTPLX-Optimized-Speed (Qwen 3.8 Flash · N-gram · VLM)"`, **~73.5 tok/s**, vision enabled)
+- `omlx/gemma-4-12B-it-oQ8e-mtp` (displayed as `"gemma-4-12B-it-oQ8e-mtp (Gemma 4 12B · 8-bit · Lightning MTP · VLM/Audio)"`, **51.4–68.4 tok/s**, vision enabled)
+- `omlx/gemma-4-31B-it-oQ6e-mtp` (displayed as `"gemma-4-31B-it-oQ6e-mtp (Gemma 4 31B · 6-bit · Lightning MTP · VLM)"`, **32.4–34.0 tok/s**, vision enabled)
+- `omlx/Ternary-Bonsai-2-27B-MTPLX-Optimized-Speed` (displayed as `"Ternary-Bonsai-2-27B-MTPLX-Optimized-Speed (2-bit Hadamard · 8.2 GB · VLM)"`, **31.4 tok/s**, vision enabled)
+- `omlx/Step-3.5-Flash-4bit`
+
+### GLM-5.3-Flash 320B MoE (18B Active · Lightning MTP · VLM)
+- `omlx/GLM-5.3-Flash-oQ4e-mtp` (displayed as `"GLM-5.3-Flash-oQ4e-mtp (GLM 5.3 Flash 320B · 4-bit · Lightning MTP · VLM)"`, 173.9 GB RAM, **25.9–29.9 tok/s**, TTFT **0.17s**, vision enabled)
+- `omlx/GLM-5.3-Flash-oQ2e-mtp` (displayed as `"GLM-5.3-Flash-oQ2e-mtp (GLM 5.3 Flash 320B · 2-bit · Lightning MTP · VLM)"`, 102.9 GB RAM, **32.1–37.6 tok/s**, vision enabled)
 
 ### Coding & Reasoning
-- `omlx/Qwen3-Coder-Next-MLX-9bit`
+- `omlx/flint-oQ8e` (**54.8–74.1 tok/s**)
+- `omlx/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2` (displayed as `"Qwen3.8-27B-Coder390 (VLM · MTP)"`, vision enabled)
+- `omlx/Nanbeige4.3-33B-MLX-6bit` (displayed as `"Nanbeige4.3-33B-MLX-6bit (Dense 33B · 512k Context)"`, **512k context**, 19.6 tok/s)
 - `omlx/DeepSeek-V4-Flash-0731-AWQ`
 - `omlx/DeepSeek-V4-Flash-0731-MXFP4-MLX`
-- `omlx/Qwen3.8-27B-Coder390-EfficientThink-Opus5.5-GPT6Astra-Grok4.7-DSV4Pro-K3-SFT-RLOO-MTP-DFlash2` (displayed as `"Qwen3.8-27B-Coder390 (VLM · MTP)"`, vision enabled)
-- `omlx/flint-oQ8e`
+- `omlx/Qwen3-Coder-Next-MLX-9bit` (displayed as `"[HDD] Qwen3-Coder-Next-MLX-9bit"`, archived on external USB-C HDD)
 
-### Mixture of Experts (MoE)
-- `omlx/Qwen3-235B-A22B-MLX-4bit`
-- `omlx/Qwen3.5-122B-A10B-MLX-9bit`
+### Mixture of Experts (MoE) & Archive (`[HDD]`)
 - `omlx/MiniMax-M3-ConfigI-MLX` (vision enabled)
+- `omlx/Qwen3.5-122B-A10B-MLX-9bit` (displayed as `"[HDD] Qwen3.5-122B-A10B-MLX-9bit"`, archived on external USB-C HDD)
+- `omlx/Qwen3-235B-A22B-MLX-4bit` (displayed as `"[HDD] Qwen3-235B-A22B-MLX-4bit"`, archived on external USB-C HDD)
 
-### General & 27B (Splash 1.5.0-m1 vs Native MLX DFlash2)
+### General & 27B (Splash 1.6.0-m1 vs Native MLX DFlash2)
 - `omlx/Qwen3.8-27B-Uncensored-MLX-SPLASH` (displayed as `"Qwen3.8-27B-Uncensored (SPLASH)"`, **default**, vision enabled)
 - `omlx/Qwen3.8-27B-Uncensored-MLX` (displayed as `"Qwen3.8-27B-Uncensored (MLX DFlash2)"`)
 - `omlx/Qwen3.8-27B-FP16_huzar_v1-SPLASH` (displayed as `"Qwen3.8-27B-FP16_huzar_v1 (SPLASH)"`)
 - `omlx/Qwen3.8-27B-FP16_huzar_v1` (displayed as `"Qwen3.8-27B-FP16_huzar_v1 (MLX DFlash2)"`)
 
-SPLASH variants are separate model IDs exposed by the oMLX server (`external_engine: "splash"` running `Splash 1.5.0-m1` with DFlash2 speculative decoding), so they are configured as their own entries rather than OpenCode `variants` (which cannot change the `modelID` sent to the server). The helper drafter checkpoint `Qwen3.8-27B-DFlash2` (`DFlash2DraftModel`) is excluded from the chat picker.
-
-### Flash & Speed (VLM + FP16 Activation Recast)
-- `omlx/Qwen3.8-Flash-Next-oQ5e-mtp` (displayed at the top as `"Qwen3.8-Flash-Next-oQ5e-mtp (Qwen 3.8 Flash · Lightning MTP · VLM)"`, vision enabled)
-- `omlx/Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` (displayed at the top as `"Qwen3.8-Flash-Next-MTPLX-Optimized-Speed (Qwen 3.8 Flash · N-gram · VLM)"`, vision enabled)
-- `omlx/Step-3.5-Flash-4bit`
+SPLASH variants are separate model IDs exposed by the oMLX server (`external_engine: "splash"` running `Splash 1.6.0-m1` with DFlash2 speculative decoding), so they are configured as their own entries rather than OpenCode `variants` (which cannot change the `modelID` sent to the server). The helper drafter checkpoint `Qwen3.8-27B-DFlash2` (`DFlash2DraftModel`) is excluded from the chat picker.
 
 ### Vision / OCR
 - `omlx/UI-Venus-1.5-30B-A3B-qx86-hi-mlx` (vision / UI automation)
@@ -86,6 +95,17 @@ Weryfikacja zachowania lokalnego serwera oMLX oraz klienta OpenCode pod ekstrema
   - Przy rozpoczynaniu nowego, niepowiązanego zadania warto utworzyć nową sesję w OpenCode, by uniknąć długiego prefillu cold-start. W sesjach wieloturowych Paged Prefix Cache redukuje kolejne odpowiedzi do kilkunastu sekund.
 
 ## Changelog
+
+### 2026-11-12 — dodano 7 nowych modeli MLX/MTP (Gemma 4, GLM 5.3 Flash, Qwen 3.8 oQ6e, Bonsai-2, Nanbeige 4.3) oraz archiwizację `[HDD]`
+- Rozszerzono listę modeli w `opencode.json` i `opencode.json.remote` z 20 do **27 modeli**:
+  - `Qwen3.8-Flash-Next-oQ6e-mtp` (6-bit iMatrix, Lightning MTP, VLM, FP16 recast: **60.6–63.9 tok/s**, 141.1 GB RAM)
+  - `GLM-5.3-Flash-oQ4e-mtp` (320B MoE / 18B active, Lightning MTP, VLM, 100% w RAM po podniesieniu limitu Metal do 186 GB: **25.9–29.9 tok/s**, TTFT **0.17s**, 173.9 GB RAM)
+  - `GLM-5.3-Flash-oQ2e-mtp` (320B MoE / 18B active, 2-bit mixed iMatrix + 4-bit router/shared/MTP, VLM: **32.1–37.6 tok/s**, 102.9 GB RAM)
+  - `gemma-4-12B-it-oQ8e-mtp` (Any-to-Any VLM/Audio, 8-bit, Lightning MTP, FP16 recast: **51.4–68.4 tok/s**, 13.0 GB RAM)
+  - `gemma-4-31B-it-oQ6e-mtp` (Dense 31B VLM, 6-bit, Lightning MTP `gemma4_verify_kernel`, FP16 recast: **32.4–34.0 tok/s**, 26.3 GB RAM)
+  - `Ternary-Bonsai-2-27B-MTPLX-Optimized-Speed` (2-bit Hadamard 27B VLM: **31.4 tok/s**, tylko **8.23 GB RAM**)
+  - `Nanbeige4.3-33B-MLX-6bit` (Dense 33B Agent/Coder, okno **512k tokenów**: **19.6 tok/s**, 25.2 GB RAM)
+- Oznaczono prefiksem **`[HDD]`** 3 starsze modele przeniesione na dysk zewnętrzny `/Volumes/Seagate_Expansion_Drive/LLM` (`[HDD] Qwen3-235B-A22B-MLX-4bit`, `[HDD] Qwen3-Coder-Next-MLX-9bit`, `[HDD] Qwen3.5-122B-A10B-MLX-9bit`), odzyskując 328 GiB na wewnętrznym SSD.
 
 ### 2026-11-06 — wyróżnienie Qwen 3.8 Flash na szczycie listy i oczyszczenie schematu OpenCode 2.2.5
 - Przesunięto najszybsze modele `Qwen3.8-Flash-Next-oQ5e-mtp` (~62.6–97 tok/s z Lightning MTP + FP16 recast) oraz `Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` (~73.5 tok/s z tablicą N-gramów + FP16 recast) na pierwsze dwie pozycje w `opencode.json` i `opencode.json.remote`.
