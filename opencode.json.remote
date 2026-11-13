@@ -73,22 +73,6 @@
             "output": 32768
           }
         },
-        "GLM-5.3-Flash-oQ2e-mtp": {
-          "name": "[omlxremote] GLM-5.3-Flash-oQ2e-mtp (GLM 5.3 Flash 320B · 2-bit · Lightning MTP · VLM)",
-          "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
-          },
-          "limit": {
-            "context": 524288,
-            "output": 32768
-          }
-        },
         "gemma-4-12B-it-oQ8e-mtp": {
           "name": "[omlxremote] gemma-4-12B-it-oQ8e-mtp (Gemma 4 12B · 8-bit · Lightning MTP · VLM/Audio)",
           "modalities": {
@@ -319,7 +303,7 @@
           }
         },
         "Qwen3.8-27B-FP16_huzar_v1-SPLASH": {
-          "name": "[omlxremote] Qwen3.8-27B-FP16_huzar_v1 (SPLASH)",
+          "name": "[omlxremote] [HDD] Qwen3.8-27B-FP16_huzar_v1 (SPLASH)",
           "modalities": {
             "input": [
               "text"
