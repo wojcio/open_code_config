@@ -29,6 +29,8 @@ Zarządza definicjami providerów modeli AI, w szczególności lokalnego serwera
 | `GEMINI.md` | Kontekst projektu, architektura i stan dla Antigravity |
 
 ## 🔄 Ostatnie Zmiany i Stan Projektu
+- **13 Listopada 2026 (Aktualizacja `GLM-5.3-Flash-oQ2e-mtp` do 512k kontekstu):**
+  - Podniesiono `limit.context` dla `GLM-5.3-Flash-oQ2e-mtp` z `262144` (256k) do **`524288` (512k)** w `opencode.json` i `opencode.json.remote` (z zachowaniem `output: 32768` oraz `262144` dla `oQ4e-mtp`). Po stronie serwera oMLX skorygowano również `temperature` dla `oQ2e-mtp` do `1.0`.
 - **12 Listopada 2026 (Wdrożenie 7 nowych modeli MLX/MTP oraz archiwizacja `[HDD]` 3 starszych modeli Qwen):**
   - Dodano 7 nowych modeli do `opencode.json` i `opencode.json.remote` (łącznie **27 modeli**): `Qwen3.8-Flash-Next-oQ6e-mtp`, `GLM-5.3-Flash-oQ4e-mtp`, `GLM-5.3-Flash-oQ2e-mtp`, `gemma-4-12B-it-oQ8e-mtp`, `gemma-4-31B-it-oQ6e-mtp`, `Ternary-Bonsai-2-27B-MTPLX-Optimized-Speed` oraz `Nanbeige4.3-33B-MLX-6bit` (512k kontekstu).
   - Dodano oznaczenie `[HDD]` dla 3 starszych modeli Qwen (`Qwen3-235B-A22B-MLX-4bit`, `Qwen3-Coder-Next-MLX-9bit`, `Qwen3.5-122B-A10B-MLX-9bit`) przeniesionych na zewnętrzny dysk `/Volumes/Seagate_Expansion_Drive/LLM` (odzyskano 328 GiB na wewnętrznym SSD).

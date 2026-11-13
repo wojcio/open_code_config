@@ -47,7 +47,7 @@ The `models` list mirrors the **27 chat/vision models** configured on the oMLX s
 
 ### GLM-5.3-Flash 320B MoE (18B Active · Lightning MTP · VLM)
 - `omlx/GLM-5.3-Flash-oQ4e-mtp` (displayed as `"GLM-5.3-Flash-oQ4e-mtp (GLM 5.3 Flash 320B · 4-bit · Lightning MTP · VLM)"`, 173.9 GB RAM, **25.9–29.9 tok/s**, TTFT **0.17s**, vision enabled)
-- `omlx/GLM-5.3-Flash-oQ2e-mtp` (displayed as `"GLM-5.3-Flash-oQ2e-mtp (GLM 5.3 Flash 320B · 2-bit · Lightning MTP · VLM)"`, 102.9 GB RAM, **32.1–37.6 tok/s**, vision enabled)
+- `omlx/GLM-5.3-Flash-oQ2e-mtp` (displayed as `"GLM-5.3-Flash-oQ2e-mtp (GLM 5.3 Flash 320B · 2-bit · Lightning MTP · VLM)"`, 102.9 GB RAM, **512k context**, **32.1–37.6 tok/s**, vision enabled)
 
 ### Coding & Reasoning
 - `omlx/flint-oQ8e` (**54.8–74.1 tok/s**)
