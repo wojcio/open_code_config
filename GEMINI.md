@@ -31,7 +31,8 @@ Zarządza definicjami providerów modeli AI, w szczególności lokalnego serwera
 ## 🔄 Ostatnie Zmiany i Stan Projektu
 - **20 Listopada 2026 (oMLX `0.8.0` build `3789`, Splash `1.6.1-m1.1` i naprawa `MiniMax-M3` `#5233`):**
   - Zaktualizowano `/opt/homebrew/bin/splash-m1` do **`1.6.1-m1.1`** oraz zaktualizowano opis serwera do stabilnego **`oMLX 0.8.0`**.
-  - Zweryfikowano naprawę `jundot/omlx#5233` (PR `#5239`): `MiniMax-M3-ConfigI-MLX` przechodzi `omlx_bench.sh` przy `max_prompt=16376` (`25.1 tok/s` decode, `masked sparse path`, brak błędów Metal).
+  - Zweryfikowano naprawę `jundot/omlx#5233` (PR `#5239`): `MiniMax-M3-ConfigI-MLX` przechodzi `omlx_bench.sh` przy `max_prompt=16376` (`25.1 tok/s` decode, `masked sparse path`, brak błędów Metal), a następnie przeniesiono model (`155.61 GiB`) na zewnętrzny dysk Seagate HDD ze znacznikiem `[HDD]` w `opencode.json` i `opencode.json.remote`.
+  - Zaktualizowano binarkę OpenCode z `v2.2.7` do **`v2.3.2`** (`opencode upgrade`, wszystkie 26 modeli `omlx/*` ładują się bez ostrzeżeń).
 - **13 Listopada 2026 (Splash 1.6.1-m1, `[HDD]` Huzar-SPLASH i usunięcie `GLM-5.3-Flash-oQ2e-mtp` — 26 modeli):**
   - Zaktualizowano silnik Splash do **`1.6.1-m1`** (`/opt/homebrew/bin/splash-m1`) i zweryfikowano `Qwen3.8-27B-Uncensored-MLX-SPLASH` w `omlx_bench.sh` (`PASS` w `197.2s`, śr. **`69.2 tok/s`**, szczyt **`91.2 tok/s`**).
   - Oznaczono `Qwen3.8-27B-FP16_huzar_v1-SPLASH` jako `[HDD]` w `opencode.json` i `opencode.json.remote` (`[HDD] Qwen3.8-27B-FP16_huzar_v1 (SPLASH)` / `[omlxremote] [HDD] ...`).

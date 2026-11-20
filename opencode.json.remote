@@ -272,7 +272,7 @@
           }
         },
         "MiniMax-M3-ConfigI-MLX": {
-          "name": "[omlxremote] MiniMax-M3-ConfigI-MLX",
+          "name": "[omlxremote] [HDD] MiniMax-M3-ConfigI-MLX",
           "modalities": {
             "input": [
               "text",
