@@ -34,7 +34,7 @@ Provider conventions:
 The local variant (`opencode.json`) connects to the local OpenAI-compatible
 endpoint at `http://127.0.0.1:8000/v1`; the remote variant (`opencode.json.remote`)
 uses the same port over the VPN address `http://100.123.37.101:8000/v1`.
-The `models` list mirrors the **26 chat/vision models** configured on the oMLX server (`oMLX 0.8.0rc1` + `Splash 1.6.1-m1`, 186 GB RAM ceiling).
+The `models` list mirrors the **26 chat/vision models** configured on the oMLX server (`oMLX 0.8.0` + `Splash 1.6.1-m1.1`, 186 GB RAM ceiling).
 
 ### Flash & Speed (VLM + FP16 Activation Recast + Lightning MTP)
 - `omlx/Qwen3.8-Flash-Next-oQ5e-mtp` (displayed at the top as `"Qwen3.8-Flash-Next-oQ5e-mtp (Qwen 3.8 Flash · Lightning MTP · VLM)"`, **67.5–73.0 tok/s**, vision enabled)
@@ -62,13 +62,13 @@ The `models` list mirrors the **26 chat/vision models** configured on the oMLX s
 - `omlx/Qwen3.5-122B-A10B-MLX-9bit` (displayed as `"[HDD] Qwen3.5-122B-A10B-MLX-9bit"`, archived on external USB-C HDD)
 - `omlx/Qwen3-235B-A22B-MLX-4bit` (displayed as `"[HDD] Qwen3-235B-A22B-MLX-4bit"`, archived on external USB-C HDD)
 
-### General & 27B (Splash 1.6.1-m1 vs Native MLX DFlash2)
+### General & 27B (Splash 1.6.1-m1.1 vs Native MLX DFlash2)
 - `omlx/Qwen3.8-27B-Uncensored-MLX-SPLASH` (displayed as `"Qwen3.8-27B-Uncensored (SPLASH)"`, **default**, vision enabled, `69.2 tok/s` avg in `omlx_bench.sh`)
 - `omlx/Qwen3.8-27B-Uncensored-MLX` (displayed as `"Qwen3.8-27B-Uncensored (MLX DFlash2)"`)
 - `omlx/Qwen3.8-27B-FP16_huzar_v1-SPLASH` (displayed as `"[HDD] Qwen3.8-27B-FP16_huzar_v1 (SPLASH)"`, `[HDD]`)
 - `omlx/Qwen3.8-27B-FP16_huzar_v1` (displayed as `"Qwen3.8-27B-FP16_huzar_v1 (MLX DFlash2)"`)
 
-SPLASH variants are separate model IDs exposed by the oMLX server (`external_engine: "splash"` running `Splash 1.6.1-m1` with DFlash2 speculative decoding), so they are configured as their own entries rather than OpenCode `variants` (which cannot change the `modelID` sent to the server). The helper drafter checkpoint `Qwen3.8-27B-DFlash2` (`DFlash2DraftModel`) is excluded from the chat picker.
+SPLASH variants are separate model IDs exposed by the oMLX server (`external_engine: "splash"` running `Splash 1.6.1-m1.1` with DFlash2 speculative decoding), so they are configured as their own entries rather than OpenCode `variants` (which cannot change the `modelID` sent to the server). The helper drafter checkpoint `Qwen3.8-27B-DFlash2` (`DFlash2DraftModel`) is excluded from the chat picker.
 
 ### Vision / OCR
 - `omlx/UI-Venus-1.5-30B-A3B-qx86-hi-mlx` (vision / UI automation)
@@ -95,6 +95,10 @@ Weryfikacja zachowania lokalnego serwera oMLX oraz klienta OpenCode pod ekstrema
   - Przy rozpoczynaniu nowego, niepowiązanego zadania warto utworzyć nową sesję w OpenCode, by uniknąć długiego prefillu cold-start. W sesjach wieloturowych Paged Prefix Cache redukuje kolejne odpowiedzi do kilkunastu sekund.
 
 ## Changelog
+
+### 2026-11-20 — oMLX `0.8.0` (build `3789`) & Splash `1.6.1-m1.1` + `MiniMax-M3` Fix Verified
+- Zaktualizowano Splash do **`1.6.1-m1.1`** (`/opt/homebrew/bin/splash-m1`) oraz zsynchronizowano opis serwera ze stabilnym **`oMLX 0.8.0`** (`integrations.splash_activations: "bf16"`).
+- Potwierdzono naprawę `jundot/omlx#5233` (PR `#5239`): `MiniMax-M3-ConfigI-MLX` przechodzi `omlx_bench.sh` na promptach >4k (`max_prompt=16376`, `25.1 tok/s` decode przez `masked sparse path`, `0` błędów Metal).
 
 ### 2026-11-12 — dodano 7 nowych modeli MLX/MTP (Gemma 4, GLM 5.3 Flash, Qwen 3.8 oQ6e, Bonsai-2, Nanbeige 4.3) oraz archiwizację `[HDD]`
 - Rozszerzono listę modeli w `opencode.json` i `opencode.json.remote` z 20 do **27 modeli**:
