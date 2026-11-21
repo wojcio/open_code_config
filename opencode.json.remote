@@ -73,6 +73,38 @@
             "output": 32768
           }
         },
+        "Hy4-flash-oQ4h-mtp": {
+          "name": "[omlxremote] Hy4-flash-oQ4h-mtp (Tencent Hy4-flash · oQ4h · Lightning MTP · VLM)",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
+        "Inkling-2-Mini-oQ4e-mtp": {
+          "name": "[omlxremote] Inkling-2-Mini-oQ4e-mtp (Inkling 2 Mini · 4-bit · DSpark · VLM)",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
         "gemma-4-12B-it-oQ8e-mtp": {
           "name": "[omlxremote] gemma-4-12B-it-oQ8e-mtp (Gemma 4 12B · 8-bit · Lightning MTP · VLM/Audio)",
           "modalities": {

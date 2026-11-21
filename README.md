@@ -34,7 +34,7 @@ Provider conventions:
 The local variant (`opencode.json`) connects to the local OpenAI-compatible
 endpoint at `http://127.0.0.1:8000/v1`; the remote variant (`opencode.json.remote`)
 uses the same port over the VPN address `http://100.123.37.101:8000/v1`.
-The `models` list mirrors the **26 chat/vision models** configured on the oMLX server (`oMLX 0.8.0` + `Splash 1.6.1-m1.1`, 186 GB RAM ceiling).
+The `models` list mirrors the **28 chat/vision models** configured on the oMLX server (`oMLX 0.8.2` + `Splash 1.7.0-m1`, 186 GB RAM ceiling).
 
 ### Flash & Speed (VLM + FP16 Activation Recast + Lightning MTP)
 - `omlx/Qwen3.8-Flash-Next-oQ5e-mtp` (displayed at the top as `"Qwen3.8-Flash-Next-oQ5e-mtp (Qwen 3.8 Flash · Lightning MTP · VLM)"`, **67.5–73.0 tok/s**, vision enabled)
@@ -95,6 +95,10 @@ Weryfikacja zachowania lokalnego serwera oMLX oraz klienta OpenCode pod ekstrema
   - Przy rozpoczynaniu nowego, niepowiązanego zadania warto utworzyć nową sesję w OpenCode, by uniknąć długiego prefillu cold-start. W sesjach wieloturowych Paged Prefix Cache redukuje kolejne odpowiedzi do kilkunastu sekund.
 
 ## Changelog
+
+### 2026-11-21 — oMLX `0.8.2` (build `3849`), Splash `1.7.0-m1` & Add `Hy4-flash-oQ4h-mtp` + `Inkling-2-Mini-oQ4e-mtp` (**28 Models**)
+- Upgraded Splash to **`1.7.0-m1`** and verified `oMLX 0.8.2` (`87` fields in `ModelSettings`, LoRA adapter support).
+- Added **`Hy4-flash-oQ4h-mtp`** (`123.6 GB` RAM, VLM, `oQ4h`, Lightning MTP `81.9%`, `35.0 tok/s` avg / `42.9 tok/s` peak) and **`Inkling-2-Mini-oQ4e-mtp`** (`17.5 GB` RAM, VLM, DSpark `76.0%`, PASS `170.9s` / `38.2 tok/s` avg / `4778` chars in `omlx_bench.sh`) to `opencode.json` and `opencode.json.remote`.
 
 ### 2026-11-20 — oMLX `0.8.0` (build `3789`) & Splash `1.6.1-m1.1` + `MiniMax-M3` Fix Verified
 - Zaktualizowano Splash do **`1.6.1-m1.1`** (`/opt/homebrew/bin/splash-m1`) oraz zsynchronizowano opis serwera ze stabilnym **`oMLX 0.8.0`** (`integrations.splash_activations: "bf16"`).
