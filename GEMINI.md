@@ -5,7 +5,7 @@ Globalne repozytorium konfiguracji dla narzędzia OpenCode CLI (`~/.config/openc
 Zarządza definicjami providerów modeli AI, w szczególności lokalnego serwera inferencyjnego oMLX na Apple Silicon (Mac Studio M2 Ultra 192GB).
 
 ## 🏗️ Architektura i Decyzje
-- **Główny provider:** `oMLX` (`oMLX 0.8.2` + `Splash 1.7.0-m1`, sufit pamięci 186 GB) pod adresem `http://127.0.0.1:8000/v1` (oraz `omlxremote` pod `http://100.123.37.101:8000/v1`) za pośrednictwem biblioteki `@ai-sdk/openai-compatible`.
+- **Główny provider:** `oMLX` (`oMLX 0.8.3` + `Splash 1.7.0-m1.1`, sufit pamięci 186 GB) pod adresem `http://127.0.0.1:8000/v1` (oraz `omlxremote` pod `http://100.123.37.101:8000/v1`) za pośrednictwem biblioteki `@ai-sdk/openai-compatible`.
 - **Obsługa modeli:** Pełny zestaw **29 skonfigurowanych modeli** (1:1 z `model_settings.json` w oMLX; pomocniczy drafter `Qwen3.8-27B-DFlash2` wykluczony z listy czatowej):
   - **Szybkie modele hybrydowe Qwen 3.8 Flash (VLM + FP16 Recast + MTP):** `Qwen3.8-Flash-Next-oQ5e-mtp` (67.5–73.0 tok/s), `Qwen3.8-Flash-Next-oQ6e-mtp` (6-bit, 60.6–63.9 tok/s), `Qwen3.8-Flash-Next-MTPLX-Optimized-Speed` (~73.5 tok/s)
   - **Model GLM-5.3-Flash 320B MoE (18B akt./tok, VLM + Lightning MTP):** `GLM-5.3-Flash-oQ4e-mtp` (173.9 GB RAM, 25.9–29.9 tok/s, TTFT 0.17s; wariant `oQ2e-mtp` usunięty 13.11.2026 po testach porównawczych z Qwen 3.8 Flash)
@@ -29,6 +29,9 @@ Zarządza definicjami providerów modeli AI, w szczególności lokalnego serwera
 | `GEMINI.md` | Kontekst projektu, architektura i stan dla Antigravity |
 
 ## 🔄 Ostatnie Zmiany i Stan Projektu
+- **23 Listopada 2026 (oMLX `0.8.3` build `3879` & Splash `1.7.0-m1.1` — weryfikacja `Hy4-flash` i `Inkling-2-Mini`):**
+  - Zaktualizowano `/opt/homebrew/bin/splash-m1` do **`1.7.0-m1.1`** (krytyczny hotfix `#75`) oraz zmigrowano `model_settings.json` do `v3` (`oMLX 0.8.3`).
+  - Re-test na `oMLX 0.8.3`: **`Hy4-flash-oQ4h-mtp`** bez halucynacji i wycieku `<think>` (`#5534`/`#5476`, PASS `181.7s`, `35.7 tok/s`, MTP `84.9%`); **`Inkling-2-Mini-oQ4e-mtp`** przyspieszył do **`41.2 tok/s`** (`112.4s`, `-30%` czasu).
 - **23 Listopada 2026 (Dodanie `Inkling-Small-mxfp4` — 29 modeli — oraz pełny benchmark 19/19 SSD PASS):**
   - Dodano **`Inkling-Small-mxfp4`** (`130.6 GB` RAM, VLM, MXFP4, `40.2 tok/s`, PASS `124.4s`) do `opencode.json` i `opencode.json.remote`.
   - Pełny test wszystkich **19 aktywnych modeli SSD** (`omlx_bench.sh`, `oMLX 0.8.2` + `Splash 1.7.0-m1` + `OpenCode v2.3.2`, `--timeout 600`): **19/19 PASS** (`0` błędów, `0` powtórzonych narzędzi; m.in. `Qwen3.8-27B-Uncensored-MLX-SPLASH` **`72.9 tok/s`**, `Qwen3.8-Flash-Next-oQ6e-mtp` **`64.2 tok/s`**, `oQ5e-mtp` **`61.0 tok/s`**, `flint-oQ8e` **`60.6 tok/s`**, `Hy4-flash-oQ4h-mtp` PASS `185.4s`).
