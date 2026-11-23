@@ -29,6 +29,8 @@ Zarządza definicjami providerów modeli AI, w szczególności lokalnego serwera
 | `GEMINI.md` | Kontekst projektu, architektura i stan dla Antigravity |
 
 ## 🔄 Ostatnie Zmiany i Stan Projektu
+- **23 Listopada 2026 (Usunięcie jawnego `apiKey` z repozytorium i rotacja klucza oMLX):**
+  - Zastąpiono jawny klucz `apiKey` placeholderem `"${OMLX_API_KEY}"` w `opencode.json` i `opencode.json.remote` (z zachowaniem nowego, zrotowanego klucza lokalnie w `~/.config/opencode/opencode.json*`; `0` wycieków w plikach śledzonych przez git).
 - **23 Listopada 2026 (oMLX `0.8.3` build `3879` & Splash `1.7.0-m1.1` — weryfikacja `Hy4-flash` i `Inkling-2-Mini`):**
   - Zaktualizowano `/opt/homebrew/bin/splash-m1` do **`1.7.0-m1.1`** (krytyczny hotfix `#75`) oraz zmigrowano `model_settings.json` do `v3` (`oMLX 0.8.3`).
   - Re-test na `oMLX 0.8.3`: **`Hy4-flash-oQ4h-mtp`** bez halucynacji i wycieku `<think>` (`#5534`/`#5476`, PASS `181.7s`, `35.7 tok/s`, MTP `84.9%`); **`Inkling-2-Mini-oQ4e-mtp`** przyspieszył do **`41.2 tok/s`** (`112.4s`, `-30%` czasu).

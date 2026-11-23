@@ -6,7 +6,7 @@
       "name": "oMLX Remote (VPN 100.123.37.101)",
       "options": {
         "baseURL": "http://100.123.37.101:8000/v1",
-        "apiKey": "sk-omlx-0Thr9X0jHr1U2T2ReS17j6Vi"
+        "apiKey": "${OMLX_API_KEY}"
       },
       "models": {
         "Qwen3.8-Flash-Next-oQ5e-mtp": {
