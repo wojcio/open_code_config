@@ -105,6 +105,22 @@
             "output": 32768
           }
         },
+        "Inkling-Small-mxfp4": {
+          "name": "[omlxremote] Inkling-Small-mxfp4 (Inkling 1 Small · MXFP4 · VLM)",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        },
         "gemma-4-12B-it-oQ8e-mtp": {
           "name": "[omlxremote] gemma-4-12B-it-oQ8e-mtp (Gemma 4 12B · 8-bit · Lightning MTP · VLM/Audio)",
           "modalities": {
