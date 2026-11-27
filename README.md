@@ -34,7 +34,7 @@ Provider conventions:
 The local variant (`opencode.json`) connects to the local OpenAI-compatible
 endpoint at `http://127.0.0.1:8000/v1`; the remote variant (`opencode.json.remote`)
 uses the same port over the VPN address `http://100.123.37.101:8000/v1`.
-The `models` list mirrors the **29 chat/vision models** configured on the oMLX server (`oMLX 0.8.3` + `Splash 1.7.0-m1.1`, 186 GB RAM ceiling).
+The `models` list mirrors the **30 chat/vision models** configured on the oMLX server (`oMLX 0.8.4` + `Splash 1.7.3-m1`, 186 GB RAM ceiling).
 
 ### Flash & Speed (VLM + FP16 Activation Recast + Lightning MTP)
 - `omlx/Qwen3.8-Flash-Next-oQ5e-mtp` (displayed at the top as `"Qwen3.8-Flash-Next-oQ5e-mtp (Qwen 3.8 Flash · Lightning MTP · VLM)"`, **67.5–73.0 tok/s**, vision enabled)
@@ -95,6 +95,10 @@ Weryfikacja zachowania lokalnego serwera oMLX oraz klienta OpenCode pod ekstrema
   - Przy rozpoczynaniu nowego, niepowiązanego zadania warto utworzyć nową sesję w OpenCode, by uniknąć długiego prefillu cold-start. W sesjach wieloturowych Paged Prefix Cache redukuje kolejne odpowiedzi do kilkunastu sekund.
 
 ## Changelog
+
+### 2026-11-27 — oMLX `0.8.4` (build `3980`), Splash `1.7.3-m1` & Add `Inkling-2-Mini-oQ4e-mtp-SPLASH` (**30 Models**)
+- Upgraded Splash to **`1.7.3-m1`** (`/opt/homebrew/bin/splash-m1`) and downloaded `incoai/Inkling-2-Mini-DFlash2` (`944 MB`).
+- Added **`Inkling-2-Mini-oQ4e-mtp-SPLASH`** (`external_engine: "splash"`, `23.1 GB` RAM, PASS `140.1s`, **`57.4 tok/s`** avg / `68.5 tok/s` peak) alongside native **`Inkling-2-Mini-oQ4e-mtp`** on `oMLX 0.8.4` (`16.6 GB` RAM, PASS `112.9s`, **`52.5 tok/s`** avg / `71.6 tok/s` peak, `5011` chars).
 
 ### 2026-11-23 — oMLX `0.8.3` (build `3879`) & Splash `1.7.0-m1.1` + `Hy4-flash` & `Inkling-2-Mini` Re-test
 - Upgraded Splash to **`1.7.0-m1.1`** (critical `#75` fix for 33–64 token prefills / cached follow-ups) and migrated oMLX settings to `SETTINGS_VERSION = 3`.
